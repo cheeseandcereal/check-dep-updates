@@ -1,8 +1,25 @@
 # Check Dependency Updates
 
-This is a tool used for checking dependency versions in [`requirements.txt`](https://pip.pypa.io/en/stable/user_guide/#requirements-files) style files.
+This is a tool used for checking dependency versions in [requirements.txt](https://pip.pypa.io/en/stable/user_guide/#requirements-files) style files.
 Inspired by tools such as [npm-check-updates](https://www.npmjs.com/package/npm-check-updates).
 
-Note this is a very simple tool. This is in contrast to tools like [pur](https://github.com/alanhamlett/pip-update-requirements) or [pip-upgrader](https://github.com/simion/pip-upgrader) etc, as if you have pip installed, this does not require any other dependencies, as it uses pip's native vendored dependencies.
+Note this is a very simple and targeted tool. It will look at a requirements.txt file, and print which dependencies with a version are out of date, with the current latest version. This is in contrast to tools like [pur](https://github.com/alanhamlett/pip-update-requirements) or [pip-upgrader](https://github.com/simion/pip-upgrader) etc, as this is trying to only do a single thing.
 
-This allows this tool to be 'portable' in the sense where you can just take the single python file and use it on any machine with pip installed.
+If you have pip and installed, this does not require any other dependencies, as it uses pip's native vendored dependencies in order to keep footprint down.
+This also allows this tool to be 'portable' in the sense where you can just take the [single python file](check_dep_updates/__init__.py) and use it on any machine with pip installed.
+
+## Install
+
+You can install this with pip:
+
+```sh
+pip install check-dep-updates
+```
+
+If you do this, it should automatically get installed and be available with the `cdu` command
+
+Alternatively, you can copy and use the single python file \_\_init\_\_.py directly on any system with pip installed.
+
+## Usage
+
+TBD

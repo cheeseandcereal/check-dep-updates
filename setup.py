@@ -25,8 +25,8 @@ setuptools.setup(
     package_data={"check_dep_updates": ["py.typed"]},
     include_package_data=True,
     zip_safe=False,
-    install_requires=[],
-    entry_points={"console_scripts": ["cdu=check_dep_updates.cli:main"]},
+    install_requires=["pip"],
+    entry_points={"console_scripts": ["cdu=check_dep_updates:main"]},
     license="Unlicense",
     classifiers=[
         "Development Status :: 3 - Alpha",
