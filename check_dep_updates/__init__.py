@@ -64,6 +64,7 @@ def main() -> None:
         latest_version = str(get_current_package_version(pkg_name))
         if latest_version != "0" and latest_version != pkg_version:
             print(f"Newer version of {pkg_name}: {latest_version}")
+    print("Done")
 
 
 if __name__ == "__main__":
