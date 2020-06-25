@@ -39,9 +39,9 @@ elif [ "$1" = "tests" ]; then
     sh tools.sh coverage
 elif [ "$1" = "lint" ]; then
     find check_dep_updates -name "*.py" -exec $py_exec -m flake8 {} +
-    $py_exec -m black --check -l 150 -t py35 check_dep_updates
+    $py_exec -m black --check -l 150 -t py36 check_dep_updates
 elif [ "$1" = "format" ]; then
-    $py_exec -m black -l 150 -t py35 check_dep_updates
+    $py_exec -m black -l 150 -t py36 check_dep_updates
 elif [ "$1" = "clean" ]; then
     find . \( -path ./.venv -o -path ./.mypy_cache \) -prune -o \( -name __pycache__ -o -name .build -o -name .coverage \) -exec rm -rfv {} +
 elif [ "$1" = "venv" ]; then
