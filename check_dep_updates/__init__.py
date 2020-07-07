@@ -3,6 +3,9 @@ from typing import Tuple, List
 import sys
 import pathlib
 
+__author__ = "Adam Crowder"
+__version__ = "0.1.0"
+
 
 def exit_failure(message: str) -> None:
     print(message, file=sys.stderr)
@@ -14,9 +17,6 @@ try:
     from pip._vendor.packaging import version
 except ImportError:
     exit_failure("Unable to import vendored dependencies from pip. Is pip installed?")
-
-__author__ = "Adam Crowder"
-__version__ = "0.1.0"
 
 
 def get_current_package_version(package: str, include_prerelease: bool = False) -> version.Version:
