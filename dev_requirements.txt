@@ -10,3 +10,4 @@ mypy
 coverage
 black
 setuptools
+twine
