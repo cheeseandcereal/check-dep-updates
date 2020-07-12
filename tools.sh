@@ -68,6 +68,8 @@ elif [ "$1" = "build" ]; then
     python3 setup.py build
 elif [ "$1" = "build-dist" ]; then
     python3 setup.py sdist bdist_wheel
+elif [ "$1" = "dist-release" ]; then
+    python3 -m twine upload dist/*
 else
     printf "%s\\n" "$USAGE"
     exit 1
