@@ -22,7 +22,9 @@ format      : automatically try to fix any linting problems that exist with the 
 clean       : remove compiled python/docs/other build or distribution artifacts from the local project
 venv        : reset venv from scratch (removes existing venv if it exists)
 full-test   : run all the checks
-docker-test : run all the checks in a docker container"
+docker-test : run all the checks in a docker container
+build       : build the project from source
+build-dist  : build distribution artifacts"
 
 if [ $# -lt 1 ]; then
     printf "%s\\n" "$USAGE"
@@ -62,6 +64,10 @@ elif [ "$1" = "full-test" ]; then
     printf "\\nRunning all tests\\n\\n"
     if ! sh tools.sh tests; then printf "\\n!!! Tests Failure !!!\\n" && exit 1; fi
     printf "\\nSuccess!\\nUse 'tools.sh clean' to cleanup if desired\\n"
+elif [ "$1" = "build" ]; then
+    python3 setup.py build
+elif [ "$1" = "build-dist" ]; then
+    python3 setup.py sdist bdist_wheel
 else
     printf "%s\\n" "$USAGE"
     exit 1
