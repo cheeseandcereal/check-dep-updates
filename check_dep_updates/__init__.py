@@ -2,6 +2,7 @@
 from typing import Tuple, List
 import sys
 import pathlib
+import argparse
 
 __author__ = "Adam Crowder"
 __version__ = "0.1.0"
@@ -55,10 +56,13 @@ def get_packages(requirements_file_path: pathlib.Path) -> List[Tuple[str, str]]:
 
 
 def main() -> None:
-    default_path = pathlib.Path("requirements.txt")
-    if not default_path.exists():
-        exit_failure("requirements.txt file not found")
-    for package in get_packages(default_path):
+    parser = argparse.ArgumentParser(description="Check a pip requirements file for updated packages")
+    parser.add_argument('-f', '--file', help='Provide alternative file for checking', action='store', default='requirements.txt')
+    flags = parser.parse_args()
+    requirements_file = pathlib.Path(flags.file)
+    if not requirements_file.exists():
+        exit_failure("{} file not found".format(requirements_file))
+    for package in get_packages(requirements_file):
         pkg_name = package[0]
         pkg_version = package[1]
         latest_version = str(get_current_package_version(pkg_name))
