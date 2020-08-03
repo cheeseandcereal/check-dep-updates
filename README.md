@@ -1,3 +1,7 @@
+[![Code Style Black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/python/black)
+[![License](https://img.shields.io/badge/license-Unlicense-informational.svg)](https://github.com/cheeseandcereal/check-dep-updates/blob/master/UNLICENSE)
+[![pypi Version](https://img.shields.io/pypi/v/check-dep-updates)](https://pypi.org/project/check-dep-updates/)
+
 # Check Dependency Updates
 
 This is a tool used for checking dependency versions in [requirements.txt](https://pip.pypa.io/en/stable/user_guide/#requirements-files) style files.
