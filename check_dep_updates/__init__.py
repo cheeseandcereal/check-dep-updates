@@ -57,7 +57,7 @@ def get_packages(requirements_file_path: pathlib.Path) -> List[Tuple[str, str]]:
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Check a pip requirements file for updated packages")
-    parser.add_argument('-f', '--file', help='Provide alternative file for checking', action='store', default='requirements.txt')
+    parser.add_argument("-f", "--file", help="Provide alternative file for checking", action="store", default="requirements.txt")
     flags = parser.parse_args()
     requirements_file = pathlib.Path(flags.file)
     if not requirements_file.exists():
