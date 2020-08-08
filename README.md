@@ -26,4 +26,23 @@ Alternatively, you can copy and use the single python file \_\_init\_\_.py direc
 
 ## Usage
 
-TBD
+Once installed, the `cdu` command should be the aliased commmand.
+
+### Within A Project Directory
+
+```sh
+$ ls
+my_app/
+requirements.txt
+$ cdu
+Newer version of requests: 2.24.0
+Done
+```
+
+### With a Specific requirements File
+
+```sh
+$ cdu -f dev_requirements.txt
+Newer version of black: 19.10b0
+Done
+```
