@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 from typing import Tuple, List
+import os
 import sys
 import pathlib
 import argparse
@@ -19,6 +20,19 @@ try:
 except ImportError:
     exit_failure("Unable to import vendored dependencies from pip. Is pip installed?")
 
+
+def search_req_file_until_root() -> str:
+    """Attempts to locate a requirements.txt file in the current directory
+    and all parent directories until root. Returns `requirements.txt` as a
+    fallback if no file could be found"""
+    req_file = pathlib.Path('requirements.txt')
+    if not req_file.exists():
+        # Iterate through all parent dirs until no more parents exist (root)
+        for cur_dir in pathlib.Path(os.getcwd()).parents:
+            cur_path = pathlib.Path(cur_dir, req_file)
+            if cur_path.exists():
+                return str(cur_path)
+    return str(req_file)
 
 def get_current_package_version(package: str, include_prerelease: bool = False) -> version.Version:
     r = requests.get(f"https://pypi.org/pypi/{package}/json")
@@ -57,8 +71,10 @@ def get_packages(requirements_file_path: pathlib.Path) -> List[Tuple[str, str]]:
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Check a pip requirements file for updated packages")
-    parser.add_argument("-f", "--file", help="Provide alternative file for checking", action="store", default="requirements.txt")
+    parser.add_argument("-f", "--file", help="Provide alternative requirements file for checking", action="store")
     flags = parser.parse_args()
+    if not flags.file:
+        flags.file = search_req_file_until_root()
     requirements_file = pathlib.Path(flags.file)
     if not requirements_file.exists():
         exit_failure("{} file not found".format(requirements_file))
