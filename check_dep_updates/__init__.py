@@ -25,7 +25,7 @@ def search_req_file_until_root() -> str:
     """Attempts to locate a requirements.txt file in the current directory
     and all parent directories until root. Returns `requirements.txt` as a
     fallback if no file could be found"""
-    req_file = pathlib.Path('requirements.txt')
+    req_file = pathlib.Path("requirements.txt")
     if not req_file.exists():
         # Iterate through all parent dirs until no more parents exist (root)
         for cur_dir in pathlib.Path(os.getcwd()).parents:
@@ -33,6 +33,7 @@ def search_req_file_until_root() -> str:
             if cur_path.exists():
                 return str(cur_path)
     return str(req_file)
+
 
 def get_current_package_version(package: str, include_prerelease: bool = False) -> version.Version:
     r = requests.get(f"https://pypi.org/pypi/{package}/json")
