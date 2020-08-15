@@ -26,11 +26,11 @@ def search_req_file_until_root() -> str:
     and all parent directories until root. Returns `requirements.txt` as a
     fallback if no file could be found"""
     req_file = pathlib.Path("requirements.txt")
-    if not req_file.exists():
+    if not req_file.is_file():
         # Iterate through all parent dirs until no more parents exist (root)
         for cur_dir in pathlib.Path(os.getcwd()).parents:
             cur_path = pathlib.Path(cur_dir, req_file)
-            if cur_path.exists():
+            if cur_path.is_file():
                 return str(cur_path)
     return str(req_file)
 
@@ -77,7 +77,7 @@ def main() -> None:
     if not flags.file:
         flags.file = search_req_file_until_root()
     requirements_file = pathlib.Path(flags.file)
-    if not requirements_file.exists():
+    if not requirements_file.is_file():
         exit_failure("{} file not found".format(requirements_file))
     for package in get_packages(requirements_file):
         pkg_name = package[0]
