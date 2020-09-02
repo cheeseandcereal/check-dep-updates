@@ -68,11 +68,11 @@ elif [ "$1" = "full-test" ]; then
     if ! sh tools.sh tests; then printf "\\n!!! Tests Failure !!!\\n" && exit 1; fi
     printf "\\nSuccess!\\nUse 'tools.sh clean' to cleanup if desired\\n"
 elif [ "$1" = "build" ]; then
-    python3 setup.py build
+    $py_exec setup.py build
 elif [ "$1" = "build-dist" ]; then
-    python3 setup.py sdist bdist_wheel
+    $py_exec setup.py sdist bdist_wheel
 elif [ "$1" = "dist-release" ]; then
-    python3 -m twine upload dist/*
+    $py_exec -m twine upload dist/*
 else
     printf "%s\\n" "$USAGE"
     exit 1
